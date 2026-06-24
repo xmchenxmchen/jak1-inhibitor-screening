@@ -8,3 +8,6 @@ matplotlib==3.9.4
 # Notebook (optional, only needed to run notebooks/)
 jupyter
 nbconvert
+
+# Data rebuild (optional, only needed for src/build_descriptors.py; also requires a Java runtime)
+padelpy

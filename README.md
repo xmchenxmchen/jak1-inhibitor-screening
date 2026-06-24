@@ -39,6 +39,7 @@ class is ~73% of the data), so the model adds real signal beyond the class prior
 │   ├── AID_1919099_datatable_all.csv      # raw PubChem BioAssay export (SMILES + activity)
 │   └── drug_descriptors_normalized.csv    # normalized molecular descriptors + `Active` label
 ├── src/
+│   ├── build_descriptors.py                # raw export -> PaDEL descriptors -> MaxAbs-normalized CSV
 │   └── xgb_pipeline.py                     # single config-driven pipeline (train / CV / eval / plots)
 ├── notebooks/
 │   └── exploratory_xgb.ipynb               # EDA: class balance, descriptor variance, correlations
@@ -64,6 +65,14 @@ class is ~73% of the data), so the model adds real signal beyond the class prior
 
 This is a wide, small dataset (more features than samples), so feature selection and regularization
 matter, and cross-validation is preferred over a single split for a stable performance estimate.
+
+**How the descriptor file was built** (`src/build_descriptors.py`): the raw export is cleaned and
+labelled (`Active` → 1, `Unspecified` → 0), PaDEL-Descriptor computes the 1875 2D+3D descriptors from
+each SMILES, and every column is scaled by its maximum absolute value (scikit-learn `MaxAbsScaler`,
+so values land in [-1, 1] with zeros preserved). The descriptor step needs Java + `padelpy`; PaDEL's
+3D descriptors depend on its conformer settings, so re-running reproduces the methodology and
+near-identical values rather than a byte-for-byte copy. The labelling and normalization steps are
+exact and verifiable: `python src/build_descriptors.py --check` runs them with no Java required.
 
 ## Methodology & the leakage fix
 
@@ -105,6 +114,14 @@ python src/xgb_pipeline.py --plots         # regenerate the figures in results/
 python src/xgb_pipeline.py --feature-selection   # add to any mode to filter features first
 ```
 
+To rebuild the descriptor dataset from the raw PubChem export (needs Java + `padelpy`):
+
+```bash
+pip install padelpy            # plus a Java runtime, e.g. `brew install openjdk`
+python src/build_descriptors.py           # raw -> PaDEL descriptors -> normalized CSV
+python src/build_descriptors.py --check    # validate labelling + normalization (no Java needed)
+```
+
 Paths, random seeds, and the hyper-parameter grid are all in the config block at the top of
 `src/xgb_pipeline.py`.
 
@@ -116,8 +133,10 @@ Paths, random seeds, and the hyper-parameter grid are all in the config block at
   regularization (`reg_lambda`, lower `max_depth`, early stopping on a validation fold).
 - **No scaffold-aware splitting:** random splits can place near-identical analogs in both train and
   test. A scaffold/cluster split would give a stricter, more realistic generalization estimate.
-- **Descriptor provenance:** the normalization step that produced `drug_descriptors_normalized.csv`
-  from the raw export is not yet scripted in this repo; adding it would make the pipeline end-to-end.
+- **Exact descriptor reproduction:** `src/build_descriptors.py` scripts the full raw → normalized
+  pipeline, but PaDEL's 3D descriptors depend on conformer-generation settings that weren't recorded,
+  so a rerun reproduces the methodology rather than a byte-identical file. Pinning the PaDEL version
+  and settings would close this gap.
 
 ## Context
 
