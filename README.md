@@ -6,9 +6,9 @@ autoimmune disease and cancer, making JAK1 inhibitors an important therapeutic c
 trains a gradient-boosted classifier to flag likely-active compounds, narrowing a large library down
 to a short list worth testing in the lab.
 
-> Originally a university course project, refactored into a reproducible, leakage-free pipeline.
-> The most interesting part of the rewrite was **finding and fixing a data-leakage bug** that had
-> been inflating the reported test AUC to ~1.0 (see [Methodology](#methodology--the-leakage-fix)).
+> Built as a reproducible, leakage-free pipeline. The most interesting part of the work was
+> **finding and fixing a data-leakage bug** that had been inflating the reported test AUC to ~1.0
+> (see [Methodology](#methodology--the-leakage-fix)).
 
 ## Results
 
@@ -138,8 +138,6 @@ Paths, random seeds, and the hyper-parameter grid are all in the config block at
   so a rerun reproduces the methodology rather than a byte-identical file. Pinning the PaDEL version
   and settings would close this gap.
 
-## Context
+## Author
 
-Final project for *Introduction to Artificial Intelligence* (NTU COOL course 41429), by
-Yu-Hsiang Cheng (Taipei Medical University). This repository is a refactor of that coursework into a
-standalone, reproducible project.
+Yu-Hsiang Cheng (Taipei Medical University).
