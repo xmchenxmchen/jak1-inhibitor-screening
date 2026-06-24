@@ -121,6 +121,6 @@ Paths, random seeds, and the hyper-parameter grid are all in the config block at
 
 ## Context
 
-Final project for *Introduction to Artificial Intelligence* (NTU COOL course 41429). Original team:
-Yu-Chieh She, Yu-Hsiang Cheng, Hsin-Ning Wang (Taipei Medical University). This repository is a
-refactor of that coursework into a standalone, reproducible project.
+Final project for *Introduction to Artificial Intelligence* (NTU COOL course 41429), by
+Yu-Hsiang Cheng (Taipei Medical University). This repository is a refactor of that coursework into a
+standalone, reproducible project.
