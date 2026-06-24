@@ -1,0 +1,5 @@
+Params,Train Accuracy,Train Precision,Train Recall,Train F1 Score,Train AUC,Val Accuracy,Val Precision,Val Recall,Val F1 Score,Val AUC
+"{'max_depth': 3, 'learning_rate': 0.25, 'n_estimators': 201, 'subsample': 0.92, 'colsample_bytree': 0.8}",1.0,1.0,1.0,1.0,1.0,0.7685185185185185,0.7934782608695652,0.9240506329113924,0.8538011695906432,0.774334351811436
+"{'max_depth': 3, 'learning_rate': 0.25, 'n_estimators': 201, 'subsample': 0.91, 'colsample_bytree': 0.8}",1.0,1.0,1.0,1.0,1.0,0.7777777777777778,0.8021978021978022,0.9240506329113924,0.8588235294117647,0.8114360541248363
+"{'max_depth': 3, 'learning_rate': 0.25, 'n_estimators': 202, 'subsample': 0.92, 'colsample_bytree': 0.8}",1.0,1.0,1.0,1.0,1.0,0.7685185185185185,0.7934782608695652,0.9240506329113924,0.8538011695906432,0.7747708424268878
+"{'max_depth': 3, 'learning_rate': 0.25, 'n_estimators': 202, 'subsample': 0.91, 'colsample_bytree': 0.8}",1.0,1.0,1.0,1.0,1.0,0.7777777777777778,0.8021978021978022,0.9240506329113924,0.8588235294117647,0.8114360541248362

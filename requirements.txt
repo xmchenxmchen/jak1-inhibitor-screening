@@ -1,0 +1,10 @@
+# Core
+pandas==2.3.3
+numpy==2.0.2
+scikit-learn==1.6.1
+xgboost==2.1.4
+matplotlib==3.9.4
+
+# Notebook (optional, only needed to run notebooks/)
+jupyter
+nbconvert
